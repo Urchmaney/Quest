@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  postgres-server:
+    image: postgres
+    ports:
+    - "15432:5432"
+    environment:
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "Quest_development"
