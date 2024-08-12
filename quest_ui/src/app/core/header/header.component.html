@@ -1,0 +1,56 @@
+<div class="pe-3">
+  <div class="row d-flex justify-content-md-end py-3">
+    <div class="col-md-5 text-end me-3">
+      <select class="form-select" aria-label="Default select example">
+        <option value="all">All Project</option>
+        <option value="recent">Recent Projects</option>
+      </select>
+      <span class="display-toggle" style="border-top-left-radius: 10px; border-bottom-left-radius: 10px; background-color: var(--primary-color);">
+        <fa-icon [icon]="faThLarge"></fa-icon>
+      </span>
+      <span class="display-toggle" style="border-top-right-radius: 10px; border-bottom-right-radius: 10px; background-color: var(--gray-color); color: #D9D9D9;">
+        <fa-icon [icon]="faBars"></fa-icon>
+      </span>
+    </div>
+  </div>
+  
+  <div class="row d-flex justify-content-md-end py-3">
+    <div class="col-md-5 text-end">
+      <a>
+        <span>
+          <fa-icon [icon]="faArrowDown"></fa-icon>
+        </span>
+        Use Template
+      </a>
+      <button class="btn ms-4" style="background-color: var(--secondary-color);"  data-bs-toggle="modal" data-bs-target="#exampleModal"> <fa-icon [icon]="faPlus"></fa-icon>New Project</button>
+    </div>
+  </div>
+  
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="p-3">
+          <input type="input" placeholder="Name" required class="form-control" style="border-radius: 0;"/>
+        </div>
+        <div class="p-3">
+          <textarea placeholder="Description" class="form-control" style="border-radius: 0; height: 100px;" required></textarea>
+        </div>
+        <div class="p-3">
+          <input type="input" placeholder="Project root question" required class="form-control" style="border-radius: 0;"/>
+        </div>
+      </div>
+      <div class="modal-footer border-0 p-3">
+        <button type="button" class="btn" style="background-color: var(--secondary-color);">Create Project</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End of Modal -->
