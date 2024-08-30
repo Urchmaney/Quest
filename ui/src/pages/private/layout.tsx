@@ -10,7 +10,7 @@ export const PrivateLayout = () => {
                         <span className="inline-block border-b-2 py-2 border-secondary">
                             Hackathons
                         </span>
-                        <span className="inline-block border-b-2 py-2 border-secondary">
+                        <span className="inline-block py-2 border-secondary">
                             Manage
                         </span>
                     </div>
