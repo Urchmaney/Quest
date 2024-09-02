@@ -3,6 +3,6 @@ import { ManageHackathons } from "../../pages/private/dashboard/manage/hackathon
 export default [
     {
         path: "/dashboard/manage",
-        element: ManageHackathons()
+        element: <ManageHackathons />
     }
 ]

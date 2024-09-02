@@ -4,10 +4,10 @@ import { Hackathons } from "../../pages/private/dashboard/hackathon/hackathons";
 export default [
     {
         path: "/dashboard/hackathons",
-        element: Hackathons()
+        element: <Hackathons />
     },
     {
         path: "/dashboard/hackathons/:id",
-        element: HackathonDetail()
+        element: <HackathonDetail />
     }
 ]
