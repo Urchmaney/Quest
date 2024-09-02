@@ -11,7 +11,8 @@ export default {
       secondary: "#E8543E",
       white: "#fff",
       lightgray: "#EFEFEF",
-      gray: "#919191"
+      gray: "#919191",
+      transparent: "transparent"
     }
   },
   plugins: [],
