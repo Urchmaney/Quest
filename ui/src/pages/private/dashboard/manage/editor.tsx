@@ -1,5 +1,5 @@
 import MDEditor from "@uiw/react-md-editor";
-import trashSvg from "../../../../assets/trash.svg";
+// import trashSvg from "../../../../assets/trash.svg";
 import warningSvg from "../../../../assets/warning.svg";
 import { useState } from "react";
 
@@ -32,6 +32,7 @@ const Editor = () => {
                 preview="edit"
             />
             {/* <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} /> */}
+            { false && <ZerState /> }
         </div>
     )
 }
