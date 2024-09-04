@@ -1,9 +1,10 @@
 import { RouteObject } from "react-router-dom";
+import { Home } from "../pages/public/home";
 
 const homeRoutes : RouteObject[] = [
     {
         path: "/",
-        element: "<h1> Home </h1>",
+        element: <Home />,
         errorElement: "<h1>Error Page</h1>",
     }
 ]
