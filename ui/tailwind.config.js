@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'webinar': "url('/src/assets/webinar.png')",
+      }
+    },
     colors: {
       primary: "#48293F",
       secondary: "#E8543E",
