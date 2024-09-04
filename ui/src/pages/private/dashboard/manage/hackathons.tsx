@@ -17,6 +17,7 @@ export const ManageHackathons = () => {
                     <ManageHackathon />
                     <ManageHackathon />
                     <ManageHackathon /> */}
+                    { false && <ManageHackathon />}
                     <ZerState />
                 </div>
             </div>
