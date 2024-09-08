@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Link, NavLink, Outlet } from "react-router-dom"
 import notificationSvg from "../../assets/notification.svg";
 import closeSvg from "../../assets/close.svg";
 import { useState } from "react";
@@ -10,12 +10,18 @@ export const PrivateLayout = () => {
             <nav className="bg-primary pt-3 pb-7">
                 <div className="text-white container mx-auto flex justify-between items-center">
                     <div className="flex gap-9 items-center text-xl">
-                        <span className="inline-block border-b-2 py-2 border-secondary">
-                            Hackathons
-                        </span>
-                        <span className="inline-block py-2 border-secondary">
-                            Manage
-                        </span>
+                        <NavLink to={"/dashboard/hackathons"} className={({ isActive }) => isActive ? "border-b-2 border-secondary" : ""}>
+                            <span className="inline-block  py-2 cursor-pointer hover:text-white">
+                                Hackathons
+                            </span>
+                        </NavLink>
+
+                        <NavLink to={"/dashboard/manage"} className={({ isActive }) => isActive ? "border-b-2 border-secondary" : ""}>
+                            <span className="inline-block py-2 cursor-pointer hover:text-white">
+                                Manage
+                            </span>
+                        </NavLink>
+
                     </div>
                     <div className="flex items-center gap-8">
                         <span>
@@ -32,7 +38,7 @@ export const PrivateLayout = () => {
                     </div>
                 </div>
             </nav>
-            <SideLayout closeFn={() => setSideBarOpen(false) } isOpen={sideBarOpen} />
+            <SideLayout closeFn={() => setSideBarOpen(false)} isOpen={sideBarOpen} />
             <Outlet />
         </div>
     )
@@ -40,7 +46,7 @@ export const PrivateLayout = () => {
 
 const SideLayout = ({ closeFn, isOpen }: { closeFn: () => void, isOpen: boolean }) => {
     return (
-        <div className={`h-screen bg-lightgray fixed top-0 min-w-[512px] z-10 ${ isOpen ? 'right-0' : '-right-full'} duration-700 ease-in-out`}>
+        <div className={`h-screen bg-lightgray fixed top-0 min-w-[512px] z-10 ${isOpen ? 'right-0' : '-right-full'} duration-700 ease-in-out`}>
             <div className="p-3 flex justify-end">
                 <button className="bg-transparent" onClick={closeFn}><img src={closeSvg} /></button>
             </div>
