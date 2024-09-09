@@ -1,8 +1,18 @@
+import { useState } from "react"
+import { Link } from "react-router-dom"
+
+const filterListType = ["all", "active", "history"] as const
+type Filter = {
+    listType: typeof filterListType[number]
+    search: string
+}
+
 export const Hackathons = () => {
+    const [filter, setFilter] = useState<Filter>({ listType: "all", search: "" });
     return (
         <div className="container mx-auto">
             <div className="py-8">
-                <Filter />
+                <Filter filter={filter} setFilter={setFilter} />
             </div>
             <div className="flex justify-between flex-wrap gap-6 pt-4">
                 <Hackathon />
@@ -19,42 +29,52 @@ export const Hackathons = () => {
 
 const Hackathon = () => {
     return (
-        <div className="w-[30%]">
-            <div className="h-56">
-                <img className="w-full h-full" src="https://www.shutterstock.com/shutterstock/photos/2475980209/display_1500/stock-vector-hackathon-glitched-word-banner-hud-hologram-cyberpunk-style-neon-tech-hackathon-glitch-background-2475980209.jpg" />
+        <Link to={"/dashboard/hackathons/6"} className="w-[30%]">
+            <div className="cursor-pointer" onClick={() => { console.log("clicks") }}>
+                <div className="h-56">
+                    <img className="w-full h-full" src="https://www.shutterstock.com/shutterstock/photos/2475980209/display_1500/stock-vector-hackathon-glitched-word-banner-hud-hologram-cyberpunk-style-neon-tech-hackathon-glitch-background-2475980209.jpg" />
+                </div>
+                <div className="bg-primary text-white p-4">
+                    <div className="">
+                        <p className="text-xl font-medium"> Untitle Hackathon</p>
+                    </div>
+                    <div className="flex justify-end gap-4 py-3 ">
+                        <p className=" rounded-md bg-secondary flex items-center justify-center px-5 py-2 leading-[0.7] text-sm ">
+                            make
+                        </p>
+                        <span className="rounded-md bg-secondary flex items-center justify-center px-5 py-2 leading-[0.7] text-sm">
+                            another
+                        </span>
+                        <span className="rounded-md bg-secondary flex items-center justify-center px-5 py-2 leading-[0.7] text-sm">
+                            save
+                        </span>
+                    </div>
+                </div>
             </div>
-           <div className="bg-primary text-white p-4">
-                <div className="">
-                    <p className="text-xl font-medium"> Untitle Hackathon</p>
-                </div>
-                <div className="flex justify-end gap-4 py-3 ">
-                    <p className=" rounded-md bg-secondary flex items-center justify-center px-5 py-2 leading-[0.7] text-sm ">
-                        make
-                    </p>
-                    <span className="rounded-md bg-secondary flex items-center justify-center px-5 py-2 leading-[0.7] text-sm">
-                        another
-                    </span>
-                    <span className="rounded-md bg-secondary flex items-center justify-center px-5 py-2 leading-[0.7] text-sm">
-                        save
-                    </span>
-                </div>
-           </div>
-        </div>
+        </Link>
     )
 }
 
-const Filter = () => {
+const Filter = ({ filter, setFilter }: { filter: Filter, setFilter: (filter: Filter) => void }) => {
     return (
         <div className="flex justify-between items-center">
             <div className="bg-lightgray p-3 px-7 rounded-md flex gap-3">
-                <button className="px-7 py-2 bg-secondary text-white rounded-md font-medium">All</button>
-                <button className="px-7 py-2 text-gray rounded-md font-medium">Active</button>
-                <button className="px-7 py-2 text-gray rounded-md font-medium">History</button>
+                {
+                    filterListType.map((t) => (
+                        <button
+                            key={t}
+                            className={`px-7 py-2 capitalize ${filter.listType === t.toLowerCase() ? "bg-secondary text-white" : "text-gray"} rounded-md font-medium`}
+                            onClick={() => setFilter({ ...filter, listType: t })}
+                        >
+                            {t}
+                        </button>
+                    ))
+                }
             </div>
 
             <div>
                 <div className="flex rounded-full border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif] w-[500px] h-14">
-                    <input type="email" placeholder="Search Something..." className="w-full outline-none bg-lightgray text-gray text-xl px-4 py-3" />
+                    <input type="email" placeholder="Search Something..." className="w-full outline-none bg-lightgray text-gray text-xl px-4 py-3" onChange={(e) => setFilter({ ...filter, search: e.target.value })} />
                     <button type='button' className="flex items-center justify-center bg-lightgray px-5">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px" className="fill-gray">
                             <path
