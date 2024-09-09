@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 import notificationSvg from "../../assets/notification.svg";
 import closeSvg from "../../assets/close.svg";
 import { useState } from "react";
