@@ -6,12 +6,12 @@ import { useState } from "react";
 export const Login = () => {
     const [showPwd, setShowPwd] = useState(false);
     return (
-        <main className="pt-20 h-[calc(100vh-90px)] flex flex-col justify-center">
+        <main className="h-[calc(100vh-90px)] flex flex-col justify-center">
             <div className="flex justify-between flex-wrap">
                 <div className="flex w-1/2 justify-center items-center">
                     <img src={lampPng} />
                 </div>
-                <div className="w-1/2 flex flex-col bg-white rounded-md px-8 py-14 min-h-[calc(100vh-400px)] justify-between">
+                <div className="w-1/2 flex flex-col bg-white rounded-md px-8 py-14 min-h-[calc(100vh-200px)] justify-between">
 
                     <div className="flex flex-col  gap-10">
                         <div className="flex flex-col gap-5">
