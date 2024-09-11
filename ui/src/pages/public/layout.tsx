@@ -4,7 +4,7 @@ import logoPng from "../../assets/logo.png";
 export const PublicLayout = () => {
     return (
         <div className="w-full h-full bg-lightgray">
-            <div className="container mx-auto h-screen ">
+            <div className="container mx-auto h-screen flex flex-col justify-between">
                 <header className="flex justify-between py-5 px-2">
                     <Link to={`/`} className="hover:text-black">
                         <div className="flex items-center gap-1">
