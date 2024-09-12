@@ -2,7 +2,7 @@ import { RouteObject } from "react-router-dom";
 import { Home } from "../pages/public/home";
 import { PublicLayout } from "../pages/public/layout";
 import { Login } from "../pages/public/login";
-import { Register } from "../pages/public/register";
+import { Register, registerAction } from "../pages/public/register";
 
 const homeRoutes : RouteObject[] = [
     {
@@ -20,7 +20,8 @@ const homeRoutes : RouteObject[] = [
             },
             {
                 path: "/register",
-                element: <Register />
+                element: <Register />,
+                action: registerAction
             }
         ]
     }
