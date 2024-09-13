@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import { Home } from "../pages/public/home";
 import { PublicLayout } from "../pages/public/layout";
-import { Login } from "../pages/public/login";
+import { Login, loginAction } from "../pages/public/login";
 import { Register, registerAction } from "../pages/public/register";
 
 const homeRoutes : RouteObject[] = [
@@ -16,7 +16,8 @@ const homeRoutes : RouteObject[] = [
             },
             {
                 path: "/login",
-                element: <Login />
+                element: <Login />,
+                action: loginAction
             },
             {
                 path: "/register",
