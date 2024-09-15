@@ -19,7 +19,6 @@ export const registerAction = async ({ request }: { request: Request }) => {
       return { error: [(e as Error).message] }
     }
   }
-
 }
 
 export const Register = () => {

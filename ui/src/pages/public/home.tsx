@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 export const Home = () => {
     return (
@@ -10,7 +11,7 @@ export const Home = () => {
                 </p>
                 <div>
                     <button className="bg-primary text-white p-3 px-14 rounded-md">
-                        Host Hackathon
+                        <Link className="hover:text-white" to={"/register"}>Host Hackathon</Link>
                     </button>
                 </div>
             </div>
