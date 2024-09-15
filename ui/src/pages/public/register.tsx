@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Form, Link, redirect, useActionData } from "react-router-dom";
+import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
 import lampPng from "../../assets/lamp.png";
 import paswordEyeSvg from "../../assets/password-eye.svg";
 import closePasswordEyeSvg from "../../assets/close-password-eye.svg";
 import axios from "axios";
+import { Loader } from "../../assets/loader";
 
 export const registerAction = async ({ request }: { request: Request }) => {
   const formData = await request.formData();
@@ -24,6 +25,7 @@ export const registerAction = async ({ request }: { request: Request }) => {
 export const Register = () => {
   const error: { [key: string]: string[] }= useActionData() as { [key: string]: string[] } || {};
   const [showPwd, setShowPwd] = useState(false);
+  const navigation = useNavigation();
   // const [error, setError] = useState<{ [key: string]: string[] }>({});
   return (
     <main className="grow flex flex-col justify-center">
@@ -83,7 +85,7 @@ export const Register = () => {
                   </span>
                 </div>
                 <div>
-                  <input type="submit" className="w-full px-5 h-16 rounded-md outline-none text-xl bg-primary text-white cursor-pointer" value={"Register"} />
+                  <button type="submit" className="w-full flex items-center justify-center px-5 h-16 rounded-md outline-none text-xl bg-primary text-white cursor-pointer"> { navigation.state === "submitting" ? <Loader size={50} /> : <span>Register</span> } </button>
                 </div>
               </div>
 
