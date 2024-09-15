@@ -1,14 +1,20 @@
 class ApplicationController < ActionController::API
-  def authorize_request
-    header = request.headers['Authorization']
-    header = header.split(' ').last if header
-    begin
-      @decoded = JsonWebToken.decode(header)
-      @current_user = User.find(@decoded[:user_id])
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { errors: e.message }, status: :unauthorized
-    rescue JWT::DecodeError => e
-      render json: { errors: e.message }, status: :unauthorized
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
+  before_action :set_current_request_details
+  before_action :authenticate
+
+  private
+    def authenticate
+      if session_record = authenticate_with_http_token { |token, _| Session.find_signed(token) }
+        Current.session = session_record
+      else
+        request_http_token_authentication
+      end
     end
-  end
+
+    def set_current_request_details
+      Current.user_agent = request.user_agent
+      Current.ip_address = request.ip
+    end
 end
