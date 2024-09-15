@@ -1,19 +1,22 @@
-import { Form, Link, redirect, useActionData } from "react-router-dom";
+import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
 import lampPng from "../../assets/lamp.png";
 import paswordEyeSvg from "../../assets/password-eye.svg";
 import closePasswordEyeSvg from "../../assets/close-password-eye.svg";
 import { useState } from "react";
 import axios from "axios";
+import { Loader } from "../../assets/loader";
 
 export const loginAction = async ({ request }: { request: Request }) => {
   const formData = await request.formData();
   const logins = Object.fromEntries(formData);
   try {
-    await axios.post("/sign_in", logins);
+    const loginResult: Response = await axios.post("/sign_in", logins);
+    if (loginResult.headers.has("x-session-token")) {
+      sessionStorage.setItem("sessionToken", loginResult.headers.get("x-session-token") || "");
+    }
     return redirect("/dashboard/hackathons");
   }
   catch (e) {
-    console.log(e);
     if (axios.isAxiosError(e)) {
       return e?.response?.data || { error: [e.message] }
     } else {
@@ -26,6 +29,8 @@ export const loginAction = async ({ request }: { request: Request }) => {
 
 export const Login = () => {
   const error: { [key: string]: string[] } = useActionData() as { [key: string]: string[] } || {};
+  const navigation = useNavigation();
+
   const [showPwd, setShowPwd] = useState(false);
   return (
     <main className="grow flex flex-col justify-center">
@@ -67,7 +72,7 @@ export const Login = () => {
                   </span>
                 </div>
                 <div>
-                  <input type="submit" className="w-full px-5 h-16 rounded-md outline-none text-xl bg-primary text-white cursor-pointer" value={"Login"} />
+                  <button type="submit" className="w-full text-center px-5 h-16 rounded-md outline-none text-xl bg-primary text-white cursor-pointer flex justify-center items-center"> {navigation.state === "submitting" ? <Loader size={50} /> : <span>Login</span>}</button>
                 </div>
               </div>
             </div>
