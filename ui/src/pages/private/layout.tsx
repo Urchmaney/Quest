@@ -1,14 +1,19 @@
-import { NavLink, Outlet } from "react-router-dom"
+import { Navigate, NavLink, Outlet } from "react-router-dom"
 import notificationSvg from "../../assets/notification.svg";
 import closeSvg from "../../assets/close.svg";
 import { useState } from "react";
 
+const isLoggedIn = (): boolean => {
+  return !!sessionStorage.getItem("sessionToken")
+}
+
 export const PrivateLayout = () => {
   const [sideBarOpen, setSideBarOpen] = useState(false);
+  const isAuthenticated = isLoggedIn();
   return (
     <div>
-      <nav className="bg-primary pt-3 pb-7 px-4">
-        <div className="text-white container max-w-container mx-auto flex justify-between items-center">
+      <nav className="bg-primary pt-3 pb-7">
+        <div className="text-white container mx-auto max-w-container flex justify-between items-center">
           <div className="flex gap-9 items-center text-xl">
             <NavLink to={"/dashboard/hackathons"} className={({ isActive }) => isActive ? "border-b-2 border-secondary" : ""}>
               <span className="inline-block  py-2 cursor-pointer hover:text-white">
@@ -40,7 +45,7 @@ export const PrivateLayout = () => {
       </nav>
       <SideLayout closeFn={() => setSideBarOpen(false)} isOpen={sideBarOpen} />
       <div className="max-w-container mx-auto">
-        <Outlet />
+        {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
       </div>
     </div>
   )

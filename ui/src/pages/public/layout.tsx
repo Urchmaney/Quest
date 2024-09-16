@@ -22,7 +22,6 @@ export const PublicLayout = () => {
           <Outlet />
         </div>
       </div>
-
     </div>
   )
 }
