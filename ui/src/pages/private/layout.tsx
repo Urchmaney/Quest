@@ -3,7 +3,7 @@ import notificationSvg from "../../assets/notification.svg";
 import closeSvg from "../../assets/close.svg";
 import { useState } from "react";
 
-const isLoggedIn= () : boolean => {
+const isLoggedIn = (): boolean => {
   return !!sessionStorage.getItem("sessionToken")
 }
 
@@ -13,7 +13,7 @@ export const PrivateLayout = () => {
   return (
     <div>
       <nav className="bg-primary pt-3 pb-7">
-        <div className="text-white container mx-auto flex justify-between items-center">
+        <div className="text-white container mx-auto max-w-container flex justify-between items-center px-4">
           <div className="flex gap-9 items-center text-xl">
             <NavLink to={"/dashboard/hackathons"} className={({ isActive }) => isActive ? "border-b-2 border-secondary" : ""}>
               <span className="inline-block  py-2 cursor-pointer hover:text-white">
@@ -44,7 +44,9 @@ export const PrivateLayout = () => {
         </div>
       </nav>
       <SideLayout closeFn={() => setSideBarOpen(false)} isOpen={sideBarOpen} />
-      { isAuthenticated ? <Outlet /> : <Navigate to="/login" /> }
+      <div className="max-w-container mx-auto">
+        {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
+      </div>
     </div>
   )
 }

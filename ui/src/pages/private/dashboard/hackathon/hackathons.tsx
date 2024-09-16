@@ -10,11 +10,11 @@ type Filter = {
 export const Hackathons = () => {
     const [filter, setFilter] = useState<Filter>({ listType: "all", search: "" });
     return (
-        <div className="container mx-auto">
+        <div className="px-4 mx-auto">
             <div className="py-8">
                 <Filter filter={filter} setFilter={setFilter} />
             </div>
-            <div className="flex justify-between flex-wrap gap-6 pt-4">
+            <div className="flex justify-evenly flex-wrap gap-6 pt-4">
                 <Hackathon />
 
                 <Hackathon />
@@ -29,7 +29,7 @@ export const Hackathons = () => {
 
 const Hackathon = () => {
     return (
-        <Link to={"/dashboard/hackathons/6"} className="w-[30%]">
+        <Link to={"/dashboard/hackathons/6"} className="md:w-[30%]">
             <div className="cursor-pointer" onClick={() => { console.log("clicks") }}>
                 <div className="h-56">
                     <img className="w-full h-full" src="https://www.shutterstock.com/shutterstock/photos/2475980209/display_1500/stock-vector-hackathon-glitched-word-banner-hud-hologram-cyberpunk-style-neon-tech-hackathon-glitch-background-2475980209.jpg" />
