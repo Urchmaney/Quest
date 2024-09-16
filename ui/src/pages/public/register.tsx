@@ -12,8 +12,8 @@ export const registerAction = async ({ request }: { request: Request }) => {
     await axios.post("/sign_up", registration);
     return redirect("/login");
   }
-  catch(e) {
-    if (axios.isAxiosError(e))  {
+  catch (e) {
+    if (axios.isAxiosError(e)) {
       return e?.response?.data
     } else {
       return { error: [(e as Error).message] }
@@ -22,7 +22,7 @@ export const registerAction = async ({ request }: { request: Request }) => {
 }
 
 export const Register = () => {
-  const error: { [key: string]: string[] }= useActionData() as { [key: string]: string[] } || {};
+  const error: { [key: string]: string[] } = useActionData() as { [key: string]: string[] } || {};
   const [showPwd, setShowPwd] = useState(false);
   // const [error, setError] = useState<{ [key: string]: string[] }>({});
   return (
@@ -88,17 +88,15 @@ export const Register = () => {
               </div>
 
             </div>
-
-
-
-            <div>
-              <div>
-                <p className="text-gray font-semibold text-xl text-center">
-                  Already have an account? <span className="text-black underline inline-block pl-4"><Link to={"/login"}>Login</Link></span>
-                </p>
-              </div>
-            </div>
           </Form>
+          <div>
+            <div>
+              <p className="text-gray font-semibold text-xl text-center">
+                Already have an account? <span className="text-black underline inline-block pl-4"><Link to={"/login"}>Login</Link></span>
+              </p>
+            </div>
+          </div>
+
         </div>
 
       </div>

@@ -8,6 +8,9 @@ export default {
     extend: {
       backgroundImage: {
         'webinar': "url('/src/assets/webinar.png')",
+      },
+      maxWidth: {
+        container: "1250px"
       }
     },
     colors: {

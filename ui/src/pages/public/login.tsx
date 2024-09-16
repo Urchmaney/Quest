@@ -73,6 +73,7 @@ export const Login = () => {
             </div>
           </Form>
 
+
           <div>
             <div>
               <p className="text-gray font-semibold text-xl text-center">
@@ -80,7 +81,6 @@ export const Login = () => {
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </main>
