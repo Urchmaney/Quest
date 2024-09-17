@@ -10,6 +10,12 @@ class User < ApplicationRecord
 
 
   has_many :sessions, dependent: :destroy
+  has_many :members, dependent: :destroy
+  has_many :nodes, through: :members
+  has_many :hackathons, through: :members
+
+  has_many :organized_hackathons, class_name: 'Hackathon', foreign_key: "owner_id"
+  has_many :tags
 
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, allow_nil: true, length: { minimum: 12 }

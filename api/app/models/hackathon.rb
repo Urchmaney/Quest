@@ -1,0 +1,2 @@
+class Hackathon < Node
+end
