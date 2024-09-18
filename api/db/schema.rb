@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_11_131923) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_17_095335) do
+  create_table "members", force: :cascade do |t|
+    t.integer "node_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["node_id"], name: "index_members_on_node_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "node_tags", force: :cascade do |t|
+    t.integer "node_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["node_id"], name: "index_node_tags_on_node_id"
+    t.index ["tag_id"], name: "index_node_tags_on_tag_id"
+  end
+
+  create_table "nodes", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.string "type"
+    t.integer "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_nodes_on_owner_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "user_agent"
@@ -18,6 +46,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_11_131923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "user_id"
+    t.integer "category", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,5 +67,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_11_131923) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "nodes", "users", column: "owner_id"
   add_foreign_key "sessions", "users"
 end
