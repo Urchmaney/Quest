@@ -1,8 +1,8 @@
 
 import './App.css'
 import { RouterProvider } from 'react-router-dom'
-import routers from './routers'
 import "./axiosConfig";
+import routers from './routers'
 
 function App() {
   return (

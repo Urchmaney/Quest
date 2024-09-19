@@ -1,13 +1,18 @@
+import { RouteObject } from "react-router-dom";
 import { HackathonDetail } from "../../pages/private/dashboard/hackathon/hackathon-detail";
-import { Hackathons } from "../../pages/private/dashboard/hackathon/hackathons";
+import { Hackathons, hackathonsLoader } from "../../pages/private/dashboard/hackathon/hackathons";
 
-export default [
+const hackathonsRouters : RouteObject[] =  [
     {
         path: "/dashboard/hackathons",
-        element: <Hackathons />
+        element: <Hackathons />,
+        loader: hackathonsLoader
+        
     },
     {
         path: "/dashboard/hackathons/:id",
         element: <HackathonDetail />
     }
 ]
+
+export default hackathonsRouters;
