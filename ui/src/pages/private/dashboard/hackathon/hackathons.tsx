@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import warningSvg from "../../../../assets/warning.svg";
-import { Link, LoaderFunctionArgs, useLoaderData, useSearchParams } from "react-router-dom"
+import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom"
 
 const filterListType = ["all", "active", "history"] as const
 type Filter = {
