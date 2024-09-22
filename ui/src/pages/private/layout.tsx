@@ -11,7 +11,7 @@ export const PrivateLayout = () => {
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const isAuthenticated = isLoggedIn();
   return (
-    <div>
+    <div className="bg-accent flex flex-col h-screen">
       <nav className="bg-primary pt-3 pb-7">
         <div className="text-white container mx-auto max-w-container flex justify-between items-center px-4">
           <div className="flex gap-9 items-center text-xl">
@@ -44,7 +44,7 @@ export const PrivateLayout = () => {
         </div>
       </nav>
       <SideLayout closeFn={() => setSideBarOpen(false)} isOpen={sideBarOpen} />
-      <div className="max-w-container mx-auto">
+      <div className="max-w-container mx-auto grow w-full">
         {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import warningSvg from "../../../../assets/warning.svg";
 import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom"
 
 const filterListType = ["all", "active", "history"] as const
@@ -14,7 +15,7 @@ interface Hackathon {
 }
 
 export const hackathonsLoader = async ({ request }: LoaderFunctionArgs): Promise<Hackathon[]> => {
-  const category = new URL(request.url).searchParams.get('category') || "all"; 
+  const category = new URL(request.url).searchParams.get('category') || "all";
   const response = await axios.get(`/hackathons?category=${category}`);
   return response.data;
 }
@@ -27,12 +28,16 @@ export const Hackathons = () => {
       <div className="py-8">
         <Filter filter={filter} setFilter={setFilter} />
       </div>
-      <div className="flex justify-evenly flex-wrap gap-6 pt-4">
-        {
-          hackathons.map((hackathon: Hackathon, i: number) => (<Hackathon hackathon={hackathon} key={`hackathons-${i}`}/>))
-        }
+      {
+        hackathons.length ? 
+        <div className="flex justify-evenly flex-wrap gap-6 pt-4">
+          {
+            hackathons.map((hackathon: Hackathon, i: number) => (<Hackathon hackathon={hackathon} key={`hackathons-${i}`} />))
+          }
+        </div> :
+        <ZeroState />
+      }
 
-      </div>
     </div>
   )
 }
@@ -86,7 +91,7 @@ const Filter = ({ filter, setFilter }: { filter: Filter, setFilter: (filter: Fil
 
       <div>
         <div className="flex rounded-full border-blue-500 overflow-hidden max-w-md mx-auto font-[sans-serif] w-[500px] h-14">
-          <input type="email" placeholder="Search Something..." className="w-full outline-none bg-lightgray text-gray text-xl px-4 py-3" onChange={(e) => setFilter({ ...filter, search: e.target.value })} />
+          <input type="email" placeholder="Search Something..." className="w-full outline-none bg-lightgray text-gray text-xl px-4 py-3 placeholder:text-gray" onChange={(e) => setFilter({ ...filter, search: e.target.value })} />
           <button type='button' className="flex items-center justify-center bg-lightgray px-5">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="20px" className="fill-gray">
               <path
@@ -94,6 +99,26 @@ const Filter = ({ filter, setFilter }: { filter: Filter, setFilter: (filter: Fil
               </path>
             </svg>
           </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const ZeroState = () => {
+  return (
+    <div>
+      <div className="bg-white flex justify-center items-center rounded-md w-full h-full text-center py-14">
+        <div className="flex flex-col items-center gap-10">
+          <img src={warningSvg} />
+          <div>
+            <p className="text-2xl font-semibold">
+              No Hackathons
+            </p>
+            <p className="text-xl text-gray">
+              Check later
+            </p>
+          </div>
         </div>
       </div>
     </div>
