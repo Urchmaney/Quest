@@ -2,7 +2,7 @@ import trashSvg from "../../../../assets/trash.svg";
 import warningSvg from "../../../../assets/warning.svg";
 export const ManageHackathons = () => {
     return (
-        <div className="bg-lightgray h-[calc(100vh-86px)]">
+        <div className=" h-[calc(100vh-86px)]">
             <div className="container mx-auto h-full">
                 <div className="flex justify-end py-5">
                     <button className="bg-secondary text-white p-3 px-5">
