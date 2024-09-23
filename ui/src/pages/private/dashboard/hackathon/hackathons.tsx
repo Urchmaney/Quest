@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import warningSvg from "../../../../assets/warning.svg";
-import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom"
+import { Link, LoaderFunctionArgs, useLoaderData, useSearchParams } from "react-router-dom"
 
 const filterListType = ["all", "active", "history"] as const
 type Filter = {
@@ -21,7 +21,10 @@ export const hackathonsLoader = async ({ request }: LoaderFunctionArgs): Promise
 }
 
 export const Hackathons = () => {
-  const [filter, setFilter] = useState<Filter>({ listType: "all", search: "" });
+  let [searchParams] = useSearchParams();
+  let category = searchParams.get('category') as typeof filterListType[number] || 'all';
+  if (filterListType.indexOf(category) < 0) category = 'all'
+  const [filter, setFilter] = useState<Filter>({ listType: category, search: "" });
   const hackathons: Hackathon[] = useLoaderData() as Hackathon[];
   return (
     <div className="px-4 mx-auto">
