@@ -27,20 +27,22 @@ export const Hackathons = () => {
   const [filter, setFilter] = useState<Filter>({ listType: category, search: "" });
   const hackathons: Hackathon[] = useLoaderData() as Hackathon[];
   return (
-    <div className="px-4 mx-auto">
-      <div className="py-8">
-        <Filter filter={filter} setFilter={setFilter} />
-      </div>
-      {
-        hackathons.length ? 
-        <div className="flex justify-evenly flex-wrap gap-6 pt-4">
-          {
-            hackathons.map((hackathon: Hackathon, i: number) => (<Hackathon hackathon={hackathon} key={`hackathons-${i}`} />))
-          }
-        </div> :
-        <ZeroState />
-      }
+    <div className="max-w-container mx-auto">
+      <div className="px-4 mx-auto">
+        <div className="py-8">
+          <Filter filter={filter} setFilter={setFilter} />
+        </div>
+        {
+          hackathons.length ?
+            <div className="flex justify-evenly flex-wrap gap-6 pt-4">
+              {
+                hackathons.map((hackathon: Hackathon, i: number) => (<Hackathon hackathon={hackathon} key={`hackathons-${i}`} />))
+              }
+            </div> :
+            <ZeroState />
+        }
 
+      </div>
     </div>
   )
 }

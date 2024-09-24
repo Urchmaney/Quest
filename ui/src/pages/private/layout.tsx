@@ -44,7 +44,8 @@ export const PrivateLayout = () => {
         </div>
       </nav>
       <SideLayout closeFn={() => setSideBarOpen(false)} isOpen={sideBarOpen} />
-      <div className="max-w-container mx-auto grow w-full">
+      {/* <div className="max-w-container mx-auto grow w-full"> */}
+      <div className="grow w-full">
         {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
       </div>
     </div>
