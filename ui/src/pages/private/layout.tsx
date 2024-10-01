@@ -4,7 +4,8 @@ import closeSvg from "../../assets/close.svg";
 import { useState } from "react";
 
 const isLoggedIn = (): boolean => {
-  return !!sessionStorage.getItem("sessionToken")
+  // return !!sessionStorage.getItem("sessionToken")
+  return true
 }
 
 export const PrivateLayout = () => {
