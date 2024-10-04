@@ -1,4 +1,3 @@
-import { Link, Navigate } from "react-router-dom";
 import trashSvg from "../../../../assets/trash.svg";
 import warningSvg from "../../../../assets/warning.svg";
 import { useApplicationContext } from "../../../../contexts/application";
