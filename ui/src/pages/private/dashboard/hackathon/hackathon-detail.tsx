@@ -1,11 +1,32 @@
-import { Link } from "react-router-dom"
-import MarkdownView from "react-showdown"
+import JsxParser from 'react-jsx-parser';
+import { Converter, extension } from "showdown";
+import { Link } from 'react-router-dom';
+
+
+extension('link', {
+  type: "output",
+  regex: new RegExp(`<a(.*)href="(.*)"(.*)>(.*)</a>`, "g"),
+  replace: `<MRLink to="$2" text="$4" />`
+})
+
+
+function MRLink({ text, to }: { text?: string, to?: string }) {
+  return (
+    <Link to={to || "#"}>{text || ""}</Link>
+  )
+}
 
 export const HackathonDetail = () => {
   const value = `
-  ![Alt text](https://raise.mit.edu/wp-content/uploads/2024/03/Registration-Launch-Email-Banner.svg =1500x550)
-  ## Home** [show](/dashboard/hackathons/3?form=me)
+# Home
+![image info](https://img.freepik.com/free-vector/hackathon-doodle-hand-drawing-team-programmers-web-developers-managers-graphic-designers-deve_88138-1348.jpg?t=st=1727391066~exp=1727394666~hmac=fb9598fd7fc9b60488364bc461d31f8e551f171480d3d3740048997405f16382&w=900)
+[Please Support us!](https://patreon.com/showdownjs)
+> Another problem
+  [Introduction](?now)
   `
+  const converter = new Converter({ extensions: ['link'] });
+  const result = converter.makeHtml(value);
+  
   return (
 
     <div className="relative">
@@ -14,24 +35,8 @@ export const HackathonDetail = () => {
       <div className="max-w-container mx-auto">
         <div className="h-[calc(100vh-200px)] bg-lightgray">
           <div className="container mx-auto h-full bg-lightgray">
-            <div className="bg-white h-[calc(100vh-100px)] relative top-[-100px]">
-              <Link to={`?form=rr`}>too</Link>
-              {/* <a href="?form=rr">hon</a> */}
-              <MarkdownView
-                extensions={[
-                  {
-                    type: "output",
-                    regex: new RegExp(`<a(.*)href="(.*)"(.*)>(.*)</a>`, 'g'),
-                    replace: `<Link to="$2">$4</Link>`
-                  }
-                ]
-                }
-                markdown={value || ""}
-                sanitizeHtml={(html) => {
-                  console.log(html)
-                  return html
-                }}
-              />
+            <div className="bg-white h-[calc(100vh-100px)] relative top-[-100px] rounded-md overflow-y-auto ">
+              <JsxParser components={{ MRLink }} jsx={result} />
             </div>
           </div>
 
