@@ -3,10 +3,14 @@ import './App.css'
 import { RouterProvider } from 'react-router-dom'
 import "./axiosConfig";
 import routers from './routers'
+import { ApplicationContextProvider } from './contexts/application';
 
 function App() {
   return (
-    <RouterProvider router={routers} />
+    <ApplicationContextProvider>
+       <RouterProvider router={routers} />
+    </ApplicationContextProvider>
+   
   )
 }
 
