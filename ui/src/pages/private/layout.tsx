@@ -1,8 +1,8 @@
-import { Navigate, NavLink, Outlet, useSearchParams } from "react-router-dom"
+import { Navigate, NavLink, Outlet } from "react-router-dom"
 import notificationSvg from "../../assets/notification.svg";
 import closeSvg from "../../assets/close.svg";
 import { useApplicationContext } from "../../contexts/application";
-import { ReactNode } from "react";
+
 
 const isLoggedIn = (): boolean => {
   return true
@@ -11,8 +11,6 @@ const isLoggedIn = (): boolean => {
 
 export const PrivateLayout = () => {
   // const [sideBarOpen, setSideBarOpen] = useState(false);
-  const [searchParam, setSearchParams] = useSearchParams();
-  const { drawer: { openDrawer, setOpenDrawer, node } } = useApplicationContext();
   const isAuthenticated = isLoggedIn();
   return (
     <div className="bg-accent flex flex-col h-screen">
@@ -47,7 +45,7 @@ export const PrivateLayout = () => {
           </div>
         </div>
       </nav>
-      <SideLayout closeFn={() => { searchParam.delete('form');  setSearchParams(searchParam); setOpenDrawer(false) }} isOpen={openDrawer || !!searchParam.get('form')} formNode={node} />
+      <SideLayout />
       {/* <div className="max-w-container mx-auto grow w-full"> */}
       <div className="grow w-full">
         {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
@@ -56,14 +54,15 @@ export const PrivateLayout = () => {
   )
 }
 
-const SideLayout = ({ closeFn, isOpen, formNode }: { closeFn: () => void, isOpen: boolean, formNode: ReactNode | undefined }) => {
+const SideLayout = () => {
+  const { drawer: { drawerOpen, closeDrawer, drawerFormNode } } = useApplicationContext();
   return (
-    <div className={`h-screen bg-lightgray fixed top-0 min-w-[512px] z-10 ${isOpen ? 'right-0' : '-right-full'} duration-700 ease-in-out`}>
+    <div className={`h-screen bg-lightgray fixed top-0 min-w-[512px] z-10 ${drawerOpen ? 'right-0' : '-right-full'} duration-700 ease-in-out`}>
       <div className="p-3 flex justify-end">
-        <button className="bg-transparent" onClick={closeFn}><img src={closeSvg} /></button>
+        <button className="bg-transparent" onClick={closeDrawer}><img src={closeSvg} /></button>
       </div>
       <div>
-        { formNode }
+        { drawerFormNode }
       </div>
     </div>
   )

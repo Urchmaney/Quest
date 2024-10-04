@@ -2,19 +2,13 @@ import { Link, Navigate } from "react-router-dom";
 import trashSvg from "../../../../assets/trash.svg";
 import warningSvg from "../../../../assets/warning.svg";
 import { useApplicationContext } from "../../../../contexts/application";
-import { CreateHackathon } from "./create-hackathon";
-import MarkdownView from "react-showdown";
-export const ManageHackathons = () => {
-  const { drawer: { setOpenDrawer, setNode } } = useApplicationContext();
 
-  const val = `
-   <input type="text" />
-  `
+
+export const ManageHackathons = () => {
+  const { drawer: { openDrawerFunc } } = useApplicationContext();
+
   const clickCreateHackathon = () => {
-    console.log('clicking')
-    setOpenDrawer(true)
-    setNode(<MarkdownView markdown={val} />)
-    // setNode(<CreateHackathon />)
+    openDrawerFunc("default", "create-hackathon")
   }
   return (
     <div className="max-w-container mx-auto">
