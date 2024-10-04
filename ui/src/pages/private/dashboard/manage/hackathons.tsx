@@ -1,12 +1,21 @@
+import { Link, Navigate } from "react-router-dom";
 import trashSvg from "../../../../assets/trash.svg";
 import warningSvg from "../../../../assets/warning.svg";
+import { useApplicationContext } from "../../../../contexts/application";
+
+
 export const ManageHackathons = () => {
+  const { drawer: { openDrawerFunc } } = useApplicationContext();
+
+  const clickCreateHackathon = () => {
+    openDrawerFunc("default", "create-hackathon")
+  }
   return (
     <div className="max-w-container mx-auto">
       <div className=" h-[calc(100vh-86px)]">
         <div className="container mx-auto h-full">
           <div className="flex justify-end py-5">
-            <button className="bg-secondary text-white p-3 px-5">
+            <button className="bg-secondary text-white p-3 px-5" onClick={() => clickCreateHackathon()} >
               Create Hackathon
             </button>
           </div>

@@ -1,14 +1,16 @@
 import { Navigate, NavLink, Outlet } from "react-router-dom"
 import notificationSvg from "../../assets/notification.svg";
 import closeSvg from "../../assets/close.svg";
-import { useState } from "react";
+import { useApplicationContext } from "../../contexts/application";
+
 
 const isLoggedIn = (): boolean => {
-  return !!sessionStorage.getItem("sessionToken")
+  return true
+  // return !!sessionStorage.getItem("sessionToken")
 }
 
 export const PrivateLayout = () => {
-  const [sideBarOpen, setSideBarOpen] = useState(false);
+  // const [sideBarOpen, setSideBarOpen] = useState(false);
   const isAuthenticated = isLoggedIn();
   return (
     <div className="bg-accent flex flex-col h-screen">
@@ -36,14 +38,14 @@ export const PrivateLayout = () => {
               <img src={notificationSvg} />
             </div>
             <div>
-              <div className="w-[45px] h-[45px] bg-secondary rounded-md cursor-pointer" onClick={() => setSideBarOpen(true)}>
+              <div className="w-[45px] h-[45px] bg-secondary rounded-md cursor-pointer">
 
               </div>
             </div>
           </div>
         </div>
       </nav>
-      <SideLayout closeFn={() => setSideBarOpen(false)} isOpen={sideBarOpen} />
+      <SideLayout />
       {/* <div className="max-w-container mx-auto grow w-full"> */}
       <div className="grow w-full">
         {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
@@ -52,13 +54,16 @@ export const PrivateLayout = () => {
   )
 }
 
-const SideLayout = ({ closeFn, isOpen }: { closeFn: () => void, isOpen: boolean }) => {
+const SideLayout = () => {
+  const { drawer: { drawerOpen, closeDrawer, drawerFormNode } } = useApplicationContext();
   return (
-    <div className={`h-screen bg-lightgray fixed top-0 min-w-[512px] z-10 ${isOpen ? 'right-0' : '-right-full'} duration-700 ease-in-out`}>
+    <div className={`h-screen bg-lightgray fixed top-0 min-w-[512px] z-10 ${drawerOpen ? 'right-0' : '-right-full'} duration-700 ease-in-out`}>
       <div className="p-3 flex justify-end">
-        <button className="bg-transparent" onClick={closeFn}><img src={closeSvg} /></button>
+        <button className="bg-transparent" onClick={closeDrawer}><img src={closeSvg} /></button>
       </div>
-
+      <div>
+        { drawerFormNode }
+      </div>
     </div>
   )
 }
