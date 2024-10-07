@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :update]
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :hackathons, only: [:index]
+  resources :hackathons, only: [:index, :create] do
+    get 'owned', on: :collection
+  end
 end
