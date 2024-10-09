@@ -24,7 +24,7 @@ class HackathonsController < ApplicationController
   end
 
   def owned
-    render json: Current.user.organized_hackathons, status: :ok
+    render json: Current.user.organized_hackathons.order("created_at DESC"), status: :ok
   end
 
   private
