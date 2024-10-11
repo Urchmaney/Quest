@@ -55,14 +55,15 @@ export const PrivateLayout = () => {
 }
 
 const SideLayout = () => {
-  const { drawer: { drawerOpen, closeDrawer, drawerFormNode } } = useApplicationContext();
+  const { drawer: { drawerOpen, closeDrawer, DrawerFormNode } } = useApplicationContext();
+  
   return (
     <div className={`h-screen bg-lightgray fixed top-0 min-w-[512px] z-10 ${drawerOpen ? 'right-0' : '-right-full'} duration-700 ease-in-out`}>
       <div className="p-3 flex justify-end">
         <button className="bg-transparent" onClick={closeDrawer}><img src={closeSvg} /></button>
       </div>
       <div>
-        { drawerFormNode }
+        { DrawerFormNode }
       </div>
     </div>
   )
