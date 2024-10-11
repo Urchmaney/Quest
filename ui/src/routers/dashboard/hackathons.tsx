@@ -4,13 +4,13 @@ import { Hackathons, hackathonsLoader } from "../../pages/private/dashboard/hack
 
 const hackathonsRouters : RouteObject[] =  [
     {
-        path: "/dashboard/hackathons",
+        path: "hackathons",
         element: <Hackathons />,
         loader: hackathonsLoader
         
     },
     {
-        path: "/dashboard/hackathons/:id",
+        path: "hackathons/:id",
         element: <HackathonDetail />
     }
 ]

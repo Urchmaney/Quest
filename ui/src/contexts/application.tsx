@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactElement, ReactNode, useContext, useState } from "react";
 import formsMap from "../drawer/forms";
 
 type DrawerFormKey = keyof typeof formsMap;
@@ -8,7 +8,9 @@ interface ApplicationState {
     drawerOpen: boolean
     openDrawerFunc: (type: "default" | "md", defaultKey?: DrawerFormKey, mdFormString?: string ) => void,
     closeDrawer: () => void
-    drawerFormNode: ReactNode | undefined
+    DrawerFormNode: JSX.Element
+    drawerFormState: string
+    setDrawerFormState: (state: string) => void
   }
 }
 
@@ -17,7 +19,9 @@ const applicationDefault : ApplicationState= {
     drawerOpen: false,
     closeDrawer : () => {},
     openDrawerFunc: () => {},
-    drawerFormNode: <></>
+    DrawerFormNode: <></>,
+    drawerFormState: "", 
+    setDrawerFormState: () => {}
   }
 }
 
@@ -27,7 +31,8 @@ export const useApplicationContext = () => useContext(ApplicationContext);
 
 export const ApplicationContextProvider = ({ children }: { children?: ReactNode | undefined }) => {
   const [drawerState, setDrawerState] = useState<boolean>(false);
-  const [drawerNode, setDrawerNode] = useState(<></>);
+  const [DrawerNode, setDrawerNode] = useState<JSX.Element>(<></>);
+  const [drawerFormState, setdDawerFormState] = useState("");
   const openDrawerFunc = (type = "default", defaultKey?: DrawerFormKey, mdFormString?: string) =>  {
     setDrawerState(true);
     if (type === "default") {
@@ -44,7 +49,9 @@ export const ApplicationContextProvider = ({ children }: { children?: ReactNode 
           drawerOpen: drawerState, 
           openDrawerFunc: openDrawerFunc,
           closeDrawer: () => setDrawerState(false),
-          drawerFormNode: drawerNode
+          DrawerFormNode: DrawerNode,
+          drawerFormState: drawerFormState,
+          setDrawerFormState: (state) => setdDawerFormState(state)
         }
       }
     }>
