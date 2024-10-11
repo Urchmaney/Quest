@@ -5,4 +5,6 @@ class Node < ApplicationRecord
 
   has_many :node_tags
   has_many :tags, through: :node_tags
+
+  validates :title, length: { in: 1..100 },  allow_nil: false
 end
