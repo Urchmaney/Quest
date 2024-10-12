@@ -1,7 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import dashboard from "./dashboard";
-import home from "./home";
+import { routers } from "./router";
 
-export default createBrowserRouter([
-  ...home, ...dashboard
-])
+export default createBrowserRouter(routers)

@@ -1,7 +1,7 @@
 import axios from "axios";
-import trashSvg from "../../../../assets/trash.svg";
-import warningSvg from "../../../../assets/warning.svg";
-import { useApplicationContext } from "../../../../contexts/application";
+import trashSvg from "../assets/trash.svg";
+import warningSvg from "../assets/warning.svg";
+import { useApplicationContext } from "../contexts/application";
 import { useLoaderData } from "react-router-dom";
 
 interface Hackathon {

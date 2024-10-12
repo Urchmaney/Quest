@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
-import lampPng from "../../assets/lamp.png";
-import paswordEyeSvg from "../../assets/password-eye.svg";
-import closePasswordEyeSvg from "../../assets/close-password-eye.svg";
+import lampPng from "../assets/lamp.png";
+import paswordEyeSvg from "../assets/password-eye.svg";
+import closePasswordEyeSvg from "../assets/close-password-eye.svg";
 import axios from "axios";
-import { Loader } from "../../assets/loader";
+import { Loader } from "../assets/loader";
 
 export const registerAction = async ({ request }: { request: Request }) => {
   const formData = await request.formData();
