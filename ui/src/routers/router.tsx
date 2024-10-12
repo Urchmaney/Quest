@@ -1,13 +1,8 @@
 import { RouteObject } from "react-router-dom";
 import { Home } from "../pages/home";
 import { PublicLayout } from "../pages/layouts/public-layout";
-import { Login } from "../pages/login";
-import { Register } from "../pages/register";
+import { Login, Register, Hackathons, HackathonDetail, ManageHackathons, ManageHackathonEditor } from "../pages";
 import { PrivateLayout } from "../pages/layouts/private-layout";
-import { Hackathons } from "../pages/hackathons";
-import { HackathonDetail } from "../pages/hackathon-detail";
-import { ManageHackathons } from "../pages/manage-hackathons";
-import { ManageHackathonEditor } from "../pages/editor";
 import { OwnedhackathonsLoader, hackathonsLoader } from "./loaders";
 import { DashboardAction, ManageHackathonAction, loginAction, registerAction } from "./actions";
 

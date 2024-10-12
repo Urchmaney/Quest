@@ -1,23 +1,12 @@
-import axios from "axios"
 import { useState } from "react"
 import warningSvg from "../assets/warning.svg";
-import { Link, LoaderFunctionArgs, useLoaderData, useSearchParams } from "react-router-dom"
+import { Link, useLoaderData, useSearchParams } from "react-router-dom"
+import { Hackathon } from "../interfaces/hackathon";
 
 const filterListType = ["all", "active", "history"] as const
 type Filter = {
   listType: typeof filterListType[number]
   search: string
-}
-
-interface Hackathon {
-  title: string,
-  description: string
-}
-
-export const hackathonsLoader = async ({ request }: LoaderFunctionArgs): Promise<Hackathon[]> => {
-  const category = new URL(request.url).searchParams.get('category') || "all";
-  const response = await axios.get(`/hackathons?category=${category}`);
-  return response.data;
 }
 
 export const Hackathons = () => {
@@ -36,7 +25,7 @@ export const Hackathons = () => {
           hackathons.length ?
             <div className="flex justify-evenly flex-wrap gap-6 pt-4">
               {
-                hackathons.map((hackathon: Hackathon, i: number) => (<Hackathon hackathon={hackathon} key={`hackathons-${i}`} />))
+                hackathons.map((hackathon: Hackathon, i: number) => (<HackathonBox hackathon={hackathon} key={`hackathons-${i}`} />))
               }
             </div> :
             <ZeroState />
@@ -47,7 +36,7 @@ export const Hackathons = () => {
   )
 }
 
-const Hackathon = ({ hackathon: { title } }: { hackathon: Hackathon }) => {
+const HackathonBox = ({ hackathon: { title } }: { hackathon: Hackathon }) => {
   return (
     <Link to={"/dashboard/hackathons/6"} className="md:w-[30%]">
       <div className="cursor-pointer" onClick={() => { console.log("clicks") }}>

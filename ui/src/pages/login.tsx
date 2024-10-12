@@ -1,9 +1,8 @@
-import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
+import { Form, Link, useActionData, useNavigation } from "react-router-dom";
 import lampPng from "../assets/lamp.png";
 import paswordEyeSvg from "../assets/password-eye.svg";
 import closePasswordEyeSvg from "../assets/close-password-eye.svg";
 import { useState } from "react";
-import axios from "axios";
 import { Loader } from "../assets/loader";
 
 

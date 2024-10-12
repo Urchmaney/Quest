@@ -1,26 +1,9 @@
 import { useState } from "react";
-import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
+import { Form, Link, useActionData, useNavigation } from "react-router-dom";
 import lampPng from "../assets/lamp.png";
 import paswordEyeSvg from "../assets/password-eye.svg";
 import closePasswordEyeSvg from "../assets/close-password-eye.svg";
-import axios from "axios";
 import { Loader } from "../assets/loader";
-
-export const registerAction = async ({ request }: { request: Request }) => {
-  const formData = await request.formData();
-  const registration = Object.fromEntries(formData);
-  try {
-    await axios.post("/sign_up", registration);
-    return redirect("/login");
-  }
-  catch (e) {
-    if (axios.isAxiosError(e)) {
-      return e?.response?.data
-    } else {
-      return { error: [(e as Error).message] }
-    }
-  }
-}
 
 export const Register = () => {
   const error: { [key: string]: string[] } = useActionData() as { [key: string]: string[] } || {};
