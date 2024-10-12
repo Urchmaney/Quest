@@ -1,7 +1,7 @@
 import MDEditor from "@uiw/react-md-editor";
 import MarkdownView from 'react-showdown'
 // import trashSvg from "../../../../assets/trash.svg";
-import warningSvg from "../../../../assets/warning.svg";
+import warningSvg from "../assets/warning.svg";
 import { useState } from "react";
 
 export const ManageHackathonEditor = () => {

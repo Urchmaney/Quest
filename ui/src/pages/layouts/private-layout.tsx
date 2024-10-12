@@ -1,17 +1,12 @@
-import { Navigate, NavLink, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 import notificationSvg from "../../assets/notification.svg";
 import closeSvg from "../../assets/close.svg";
 import { useApplicationContext } from "../../contexts/application";
 
-
-const isLoggedIn = (): boolean => {
-  return true
-  // return !!sessionStorage.getItem("sessionToken")
-}
-
 export const PrivateLayout = () => {
   // const [sideBarOpen, setSideBarOpen] = useState(false);
-  const isAuthenticated = isLoggedIn();
+  
+  // console.log(isAuthenticated, "===========")
   return (
     <div className="bg-accent flex flex-col h-screen">
       <nav className="bg-primary pt-3 pb-7">
@@ -48,7 +43,8 @@ export const PrivateLayout = () => {
       <SideLayout />
       {/* <div className="max-w-container mx-auto grow w-full"> */}
       <div className="grow w-full">
-        {isAuthenticated ? <Outlet /> : <Navigate to="/login" />}
+        {/* {isAuthenticated ? <Outlet /> : <Navigate to="/login" />} */}
+        <Outlet />
       </div>
     </div>
   )

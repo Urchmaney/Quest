@@ -1,22 +1,9 @@
-import axios from "axios";
-import trashSvg from "../../../../assets/trash.svg";
-import warningSvg from "../../../../assets/warning.svg";
-import { useApplicationContext } from "../../../../contexts/application";
+import trashSvg from "../assets/trash.svg";
+import warningSvg from "../assets/warning.svg";
+import { useApplicationContext } from "../contexts/application";
 import { useLoaderData } from "react-router-dom";
+import { Hackathon } from "../interfaces/hackathon";
 
-interface Hackathon {
-  title: string,
-  description: string
-}
-
-export const OwnedhackathonsLoader = async (): Promise<Hackathon[]> => {
-  try {
-    const response = await axios.get(`/hackathons/owned`);
-    return response.data;
-  } catch (e) {
-    return [];
-  }
-}
 
 export const ManageHackathons = () => {
   const ownHackathons: Hackathon[] = (useLoaderData() || []) as Hackathon[];

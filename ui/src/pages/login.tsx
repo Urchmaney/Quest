@@ -1,30 +1,9 @@
-import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
-import lampPng from "../../assets/lamp.png";
-import paswordEyeSvg from "../../assets/password-eye.svg";
-import closePasswordEyeSvg from "../../assets/close-password-eye.svg";
+import { Form, Link, useActionData, useNavigation } from "react-router-dom";
+import lampPng from "../assets/lamp.png";
+import paswordEyeSvg from "../assets/password-eye.svg";
+import closePasswordEyeSvg from "../assets/close-password-eye.svg";
 import { useState } from "react";
-import axios from "axios";
-import { Loader } from "../../assets/loader";
-
-export const loginAction = async ({ request }: { request: Request }) => {
-  const formData = await request.formData();
-  const logins = Object.fromEntries(formData);
-  try {
-    const loginResult: Response = await axios.post("/sign_in", logins);
-    if (loginResult.headers.has("x-session-token")) {
-      sessionStorage.setItem("sessionToken", loginResult.headers.get("x-session-token") || "");
-    }
-    return redirect("/dashboard/hackathons");
-  }
-  catch (e) {
-    if (axios.isAxiosError(e)) {
-      return e?.response?.data || { error: [e.message] }
-    } else {
-      return { error: [(e as Error).message] }
-    }
-  }
-}
-
+import { Loader } from "../assets/loader";
 
 
 export const Login = () => {

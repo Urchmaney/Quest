@@ -11,7 +11,6 @@ const CreateHackathon = () => {
 
   useEffect(() => {
     if (fetcher.state === "loading") {
-      console.log(fetcher.data)
       if (fetcher.data?.status === 201) {
         closeDrawer();
         formRef.current?.reset();
