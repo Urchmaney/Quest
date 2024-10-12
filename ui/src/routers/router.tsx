@@ -5,7 +5,6 @@ import { Login, Register, Hackathons, HackathonDetail, ManageHackathons, ManageH
 import { PrivateLayout } from "../pages/layouts/private-layout";
 import { OwnedhackathonsLoader, editorLoader, hackathonsLoader } from "./loaders";
 import { dashboardAction, manageHackathonAction, loginAction, registerAction, editorAction } from "./actions";
-
 export const routers: RouteObject[] = [
   {
     path: "/",
