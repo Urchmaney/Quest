@@ -1,4 +1,5 @@
 import { ManageHackathonEditor } from "./editor";
+import { ErrorPage } from "./error";
 import { HackathonDetail } from "./hackathon-detail";
 import { Hackathons } from "./hackathons";
 import { Home } from "./home";
@@ -13,5 +14,6 @@ export {
   Home,
   Login,
   ManageHackathons,
-  Register
+  Register,
+  ErrorPage
 }

@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 import { Home } from "../pages/home";
 import { PublicLayout } from "../pages/layouts/public-layout";
-import { Login, Register, Hackathons, HackathonDetail, ManageHackathons, ManageHackathonEditor } from "../pages";
+import { Login, Register, Hackathons, HackathonDetail, ManageHackathons, ManageHackathonEditor, ErrorPage } from "../pages";
 import { PrivateLayout } from "../pages/layouts/private-layout";
 import { OwnedhackathonsLoader, hackathonsLoader } from "./loaders";
 import { DashboardAction, ManageHackathonAction, loginAction, registerAction } from "./actions";
@@ -10,7 +10,6 @@ export const routers: RouteObject[] = [
   {
     path: "/",
     element: <PublicLayout />,
-    errorElement: "<h1>Error Page</h1>",
     children: [
       {
         path: "",
@@ -29,8 +28,9 @@ export const routers: RouteObject[] = [
     ]
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: <PrivateLayout />,
+    errorElement: <ErrorPage />,
     action: DashboardAction,
     children: [
       {

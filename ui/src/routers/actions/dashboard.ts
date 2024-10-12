@@ -1,21 +1,15 @@
-import axios from "axios";
 import { ActionFunctionArgs } from "react-router-dom";
+import { createHackathon } from "../../services/api";
 
-export const DashboardAction =  async ({ request, params }: ActionFunctionArgs) => {
+export const DashboardAction =  async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
-  console.log(Object.fromEntries(formData), request, params);
-  const hackathon = {
-    title: formData.get("hackathonName"),
-    description: formData.get("hackathonDescription")
-  }
   try {
-    const hackathonResult: Response = await axios.post("/hackathons", hackathon);
+    const hackathonResult: Response = await createHackathon({
+      title: formData.get("hackathonName")?.toString() || "",
+      description: formData.get("hackathonDescription")?.toString() || ""
+    })
     return hackathonResult
   } catch (e) {
-    if (axios.isAxiosError(e)) {
-      return e?.response?.data || { error: [e.message] }
-    } else {
-      return { error: [(e as Error).message] }
-    }
+    return e
   }
 }
