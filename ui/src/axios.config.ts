@@ -16,6 +16,5 @@ axios.interceptors.response.use(function (response) {
   if (error.status === 401) {
     sessionStorage.clear()
   }
-  console.log(error)
   return Promise.reject(error);
 });

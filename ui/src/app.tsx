@@ -1,7 +1,7 @@
 
-import './App.css'
+import './app.css'
 import { RouterProvider } from 'react-router-dom'
-import "./axiosConfig";
+import "./axios.config";
 import routers from './routers'
 import { ApplicationContextProvider } from './contexts/application';
 
