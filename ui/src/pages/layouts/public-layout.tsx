@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import logoPng from "../react.svg";
+import logoPng from "../../assets/logo.png";
 
 export const PublicLayout = () => {
   return (
