@@ -1,11 +1,13 @@
-import { DashboardAction } from "./dashboard";
+import { dashboardAction } from "./dashboard";
+import { editorAction } from "./editor";
 import { loginAction } from "./login";
-import { ManageHackathonAction } from "./manage-hackathon";
+import { manageHackathonAction } from "./manage-hackathon";
 import { registerAction } from "./register";
 
 export {
   loginAction,
   registerAction,
-  ManageHackathonAction,
-  DashboardAction
+  manageHackathonAction,
+  dashboardAction,
+  editorAction
 }

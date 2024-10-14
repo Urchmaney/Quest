@@ -1,6 +1,6 @@
 import { login, register } from "./auth";
-import { allHackathons, createHackathon, ownedHackathons } from "./hackathon";
+import { allHackathons, createHackathon, ownedHackathons, saveHackathonMarkdown } from "./hackathon";
 
 export {
-    login, register, allHackathons, ownedHackathons, createHackathon
+  login, register, allHackathons, ownedHackathons, createHackathon, saveHackathonMarkdown
 }
