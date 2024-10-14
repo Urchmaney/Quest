@@ -50,7 +50,7 @@ export const ManageHackathonEditor = () => {
 }
 
 const Editor = ({ preview, markdown, setMarkdown }: { preview: boolean, markdown: string, setMarkdown: (val: string | undefined) => void }) => {
-  
+
   return (
     <div className="bg-white flex justify-center items-center rounded-md w-full h-full text-center">
       {
