@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :hackathons, only: [:index, :create] do
     get 'owned', on: :collection
+    get 'markdown', on: :member
   end
 end

@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_17_095335) do
     t.string "title", null: false
     t.text "description"
     t.string "type"
+    t.text "md_interface"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer "owner_id", null: false

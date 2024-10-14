@@ -27,6 +27,11 @@ class HackathonsController < ApplicationController
     render json: Current.user.organized_hackathons.order("created_at DESC"), status: :ok
   end
 
+  def markdown
+    hackathon = Hackathon.find_by(owner_id: Current.user.id, id: params[:id])
+    render json: hackathon&.md_interface, status: :ok
+  end
+
   private
 
   def hackathon_params
