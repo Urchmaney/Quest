@@ -3,8 +3,8 @@ import { Home } from "../pages/home";
 import { PublicLayout } from "../pages/layouts/public-layout";
 import { Login, Register, Hackathons, HackathonDetail, ManageHackathons, ManageHackathonEditor, ErrorPage } from "../pages";
 import { PrivateLayout } from "../pages/layouts/private-layout";
-import { OwnedhackathonsLoader, hackathonsLoader } from "./loaders";
-import { DashboardAction, ManageHackathonAction, loginAction, registerAction } from "./actions";
+import { OwnedhackathonsLoader, editorLoader, hackathonsLoader } from "./loaders";
+import { dashboardAction, manageHackathonAction, loginAction, registerAction, editorAction } from "./actions";
 
 export const routers: RouteObject[] = [
   {
@@ -31,7 +31,7 @@ export const routers: RouteObject[] = [
     path: "dashboard",
     element: <PrivateLayout />,
     errorElement: <ErrorPage />,
-    action: DashboardAction,
+    action: dashboardAction,
     children: [
       {
         path: "hackathons",
@@ -47,11 +47,13 @@ export const routers: RouteObject[] = [
         path: "manage",
         element: <ManageHackathons />,
         loader: OwnedhackathonsLoader,
-        action: ManageHackathonAction
+        action: manageHackathonAction
       },
       {
         path: "manage/:id/editor",
-        element: <ManageHackathonEditor />
+        element: <ManageHackathonEditor />,
+        loader: editorLoader,
+        action: editorAction
       }
     ]
   }

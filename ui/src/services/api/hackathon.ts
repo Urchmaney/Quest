@@ -23,3 +23,29 @@ export const createHackathon : (hackathon: { title: string, description: string 
     }
   }
 }
+
+export const hackathonMarkdown : (id: number) => Promise<string> = async (id) => {
+  try {
+    const result = await axios.get(`/hackathons/${id}/markdown`);
+    return result.data
+  } catch(e) {
+    if (axios.isAxiosError(e)) {
+      throw e?.response?.data || { error: [e.message] }
+    } else {
+      throw { error: [(e as Error).message] }
+    }
+  }
+}
+
+export const saveHackathonMarkdown : (id: number, markdown: string) => Promise<Response> = async (id, markdown) => {
+  try {
+    const markdownResult: Response = await axios.post(`/hackathons/${id}/markdown`, { markdown });
+    return markdownResult;
+  } catch (e) {
+    if (axios.isAxiosError(e)) {
+      throw e?.response?.data || { error: [e.message] }
+    } else {
+      throw { error: [(e as Error).message] }
+    }
+  }
+}
