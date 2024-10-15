@@ -2,7 +2,7 @@ import trashSvg from "../assets/trash.svg";
 import warningSvg from "../assets/warning.svg";
 import cogWheel from "../assets//cog.svg";
 import { useApplicationContext } from "../contexts/application";
-import { Link, useLoaderData } from "react-router-dom";
+import { Form, Link, useLoaderData } from "react-router-dom";
 import { Hackathon } from "../interfaces/hackathon";
 
 
@@ -42,7 +42,8 @@ export const ManageHackathons = () => {
 }
 
 const ManageHackathon = ({ hackathon }: { hackathon: Hackathon }) => {
-  const { id, title, description } =  hackathon;
+  const { id, title, description } = hackathon;
+
   return (
     <div className="bg-white p-5 rounded-md">
       <div className="flex justify-between items-center py-2">
@@ -53,11 +54,11 @@ const ManageHackathon = ({ hackathon }: { hackathon: Hackathon }) => {
           <button className="bg-white text-gray font-medium">
             <Link to={"#"}>Preview</Link>
           </button>
-          <button className="bg-white">
-            <Link to={"#"}>
+          <Form method="delete" className="flex items-center justify-center" >
+            <button className="bg-white" type="submit" name="id" value={id}>
               <img src={trashSvg} />
-            </Link>
-          </button>
+            </button>
+          </Form>
           <button className="bg-white">
             <Link to={`${id}/editor`} state={{ hackathon }}>
               <img src={cogWheel} />

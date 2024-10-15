@@ -1,5 +1,5 @@
 class HackathonsController < ApplicationController
-  before_action :owner_hackathon, only: [:markdown, :save_markdown]
+  before_action :owner_hackathon, only: [:destroy, :markdown, :save_markdown]
 
   def index
     hackathons = if params[:category] == "active"
@@ -23,6 +23,10 @@ class HackathonsController < ApplicationController
     else
       render json: hackathon.errors, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @own_hackathon&.destroy
   end
 
   def owned

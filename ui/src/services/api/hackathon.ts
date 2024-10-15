@@ -50,3 +50,15 @@ export const saveHackathonMarkdown : (id: number, markdown: string) => Promise<R
   }
 }
 
+export const deleteHackathon : (id: number) => Promise<Response> = async (id) => {
+  try {
+    const deleteResponse : Response = await axios.delete(`/hackathons/${id}/`);
+    return deleteResponse;
+  } catch(e) {
+    if (axios.isAxiosError(e)) {
+      throw e?.response?.data || { error: [e.message] }
+    } else {
+      throw { error: [(e as Error).message] }
+    }
+  }
+}
