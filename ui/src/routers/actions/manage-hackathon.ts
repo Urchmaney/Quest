@@ -1,4 +1,3 @@
-import { redirect } from "react-router-dom";
 import { deleteHackathon } from "../../services/api/hackathon";
 
 export const manageHackathonAction = async ({ request }: { request: Request }) => {
