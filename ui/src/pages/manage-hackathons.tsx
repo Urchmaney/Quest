@@ -52,7 +52,7 @@ const ManageHackathon = ({ hackathon }: { hackathon: Hackathon }) => {
         </h3>
         <div className="flex items-center bg-transparent gap-2">
           <button className="bg-white text-gray font-medium">
-            <Link to={"#"}>Preview</Link>
+            <Link to={`/dashboard/hackathons/${id}`} rel="noopener noreferrer">Preview</Link>
           </button>
           <Form method="delete" className="flex items-center justify-center" >
             <button className="bg-white" type="submit" name="id" value={id}>

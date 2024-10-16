@@ -11,6 +11,19 @@ export const ownedHackathons : () => Promise<Hackathon[]> = async () => {
   return response.data;
 }
 
+export const getHackathon : (id: number) => Promise<Hackathon> = async (id) => {
+  try {
+    const response = await axios.get(`/hackathons/${id}`);
+    return response.data;
+  } catch(e) {
+    if (axios.isAxiosError(e)) {
+      throw e?.response?.data || { error: [e.message] }
+    } else {
+      throw { error: [(e as Error).message] }
+    }
+  }
+}
+
 export const createHackathon : (hackathon: { title: string, description: string }) => Promise<Response> = async(hackathon) => {
   try {
     const hackathonResult: Response = await axios.post("/hackathons", hackathon);

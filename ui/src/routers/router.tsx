@@ -3,7 +3,7 @@ import { Home } from "../pages/home";
 import { PublicLayout } from "../pages/layouts/public-layout";
 import { Login, Register, Hackathons, HackathonDetail, ManageHackathons, ManageHackathonEditor, ErrorPage } from "../pages";
 import { PrivateLayout } from "../pages/layouts/private-layout";
-import { OwnedhackathonsLoader, editorLoader, hackathonsLoader } from "./loaders";
+import { OwnedhackathonsLoader, editorLoader, hackathonUILoader, hackathonsLoader } from "./loaders";
 import { dashboardAction, manageHackathonAction, loginAction, registerAction, editorAction } from "./actions";
 export const routers: RouteObject[] = [
   {
@@ -40,7 +40,8 @@ export const routers: RouteObject[] = [
       },
       {
         path: "hackathons/:id",
-        element: <HackathonDetail />
+        element: <HackathonDetail />,
+        loader: hackathonUILoader
       },
       {
         path: "manage",

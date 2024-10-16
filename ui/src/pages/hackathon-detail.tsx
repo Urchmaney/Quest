@@ -1,6 +1,6 @@
 import JsxParser from 'react-jsx-parser';
 import { Converter, extension } from "showdown";
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 
 extension('link', {
@@ -17,15 +17,9 @@ function MRLink({ text, to }: { text?: string, to?: string }) {
 }
 
 export const HackathonDetail = () => {
-  const value = `
-# Home
-![image info](https://img.freepik.com/free-vector/hackathon-doodle-hand-drawing-team-programmers-web-developers-managers-graphic-designers-deve_88138-1348.jpg?t=st=1727391066~exp=1727394666~hmac=fb9598fd7fc9b60488364bc461d31f8e551f171480d3d3740048997405f16382&w=900)
-[Please Support us!](https://patreon.com/showdownjs)
-> Another problem
-  [Introduction](?now)
-  `
+  const hackathonUI = useLoaderData() as string;
   const converter = new Converter({ extensions: ['link'] });
-  const result = converter.makeHtml(value);
+  const result = converter.makeHtml(hackathonUI);
   
   return (
 

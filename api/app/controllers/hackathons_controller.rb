@@ -1,5 +1,5 @@
 class HackathonsController < ApplicationController
-  before_action :owner_hackathon, only: [:destroy, :markdown, :save_markdown]
+  before_action :owner_hackathon, only: [:show, :destroy, :markdown, :save_markdown]
 
   def index
     hackathons = if params[:category] == "active"
@@ -27,6 +27,10 @@ class HackathonsController < ApplicationController
 
   def destroy
     @own_hackathon&.destroy
+  end
+
+  def show
+    render json: @own_hackathon, status: :ok
   end
 
   def owned
