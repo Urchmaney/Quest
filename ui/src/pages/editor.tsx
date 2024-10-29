@@ -3,23 +3,25 @@ import MarkdownView from 'react-showdown'
 // import trashSvg from "../../../../assets/trash.svg";
 import warningSvg from "../assets/warning.svg";
 import { useState } from "react";
-import { useLoaderData, useLocation, useSubmit } from "react-router-dom";
+import { useFetcher, useLoaderData, useLocation } from "react-router-dom";
 import { Hackathon } from "../interfaces/hackathon";
+import { Loader } from "../components/icons";
 
 export const ManageHackathonEditor = () => {
   const [preview, setPreview] = useState(false);
   const loadedMarkdown = useLoaderData() as string;
   const [markdown, setMarkdown] = useState<string>(loadedMarkdown || "");
   const location = useLocation();
-  const submit = useSubmit();
-  const { hackathon } = (location.state as { hackathon: Hackathon }) || { hackathon: null }
+  const fetcher = useFetcher();
+  const [hackathon] = useState<Hackathon | null>((location.state as { hackathon: Hackathon })?.hackathon)
 
   const saveMarkdown = () => {
     const formData =  new FormData();
     formData.append("markdown", markdown);
-    submit(formData, { method: "post" });
+    fetcher.submit(formData, { method: "post" });
   }
 
+  console.log(fetcher.state)
   return (
     <div className="max-w-container mx-auto">
       <div className=" h-[calc(100vh-86px)]">
@@ -29,8 +31,8 @@ export const ManageHackathonEditor = () => {
               {hackathon?.title || ""}
             </p>
             <div className="flex gap-4">
-              <button className="underline" onClick={saveMarkdown}>
-                Save
+              <button className="underline flex items-center" onClick={saveMarkdown}>
+                { (fetcher.state === "submitting" || fetcher.state === "loading") && <Loader size={20} fill="#000" /> }Save
               </button>
               <button onClick={() => setPreview(!preview)} className="px-4 rounded bg-secondary text-white">
                 {preview ? 'Edit' : 'Preview'}
@@ -41,7 +43,6 @@ export const ManageHackathonEditor = () => {
           </div>
           <div className="overflow-y-scroll no-scrollbar py-6 flex flex-col gap-6 h-[calc(100%-100px)]">
             <Editor preview={preview} markdown={markdown} setMarkdown={(val: string | undefined) => setMarkdown(val || "")}/>
-            {/* <ZerState /> */}
           </div>
         </div>
       </div>

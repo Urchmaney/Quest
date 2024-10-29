@@ -3,7 +3,7 @@ import { Form, Link, useActionData, useNavigation } from "react-router-dom";
 import lampPng from "../assets/lamp.png";
 import paswordEyeSvg from "../assets/password-eye.svg";
 import closePasswordEyeSvg from "../assets/close-password-eye.svg";
-import { Loader } from "../assets/loader";
+import { Loader } from "../components/icons";
 
 export const Register = () => {
   const error: { [key: string]: string[] } = useActionData() as { [key: string]: string[] } || {};

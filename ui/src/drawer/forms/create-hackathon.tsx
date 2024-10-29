@@ -1,5 +1,5 @@
 import { Form, useFetcher } from "react-router-dom";
-import { Loader } from "../../assets/loader";
+import { Loader } from "../../components/icons";
 import { useEffect, useRef, useState } from "react";
 import { useApplicationContext } from "../../contexts/application";
 
